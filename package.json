@@ -1,0 +1,39 @@
+{
+  "name": "jym",
+  "version": "1.0.0",
+  "description": "Jym is a CLI tool to quickly generate SaaS MVPs",
+  "main": "dist/cli.js",
+  "type": "module",
+  "bin": {
+    "@flixoflax/jym": "bin/jym.js",
+    "jym": "bin/jym.js"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": "https://github.com/flixoflax/jym.git",
+  "author": "flixoflax <flixoflax@gmx.de>",
+  "license": "BSD-3",
+  "devDependencies": {
+    "@eslint/create-config": "0.3.1",
+    "@rollup/plugin-typescript": "8.5.0",
+    "@types/node": "18.7.18",
+    "@typescript-eslint/eslint-plugin": "5.37.0",
+    "@typescript-eslint/parser": "5.37.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-config-standard-with-typescript": "23.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
+    "rollup": "2.79.0",
+    "tslib": "2.4.0",
+    "typescript": "*"
+  }
+}
