@@ -57,7 +57,7 @@ export const promptForOptions = async (name: string): Promise<Options> => {
 
   const baseOptions = await inquirer.prompt<Options>(questions)
 
-  baseOptions.plans = await promptForPlans()
+  baseOptions.plans = await promptForPlans(baseOptions.currency)
 
   return baseOptions
 }
