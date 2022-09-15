@@ -1,5 +1,6 @@
 import typescript from '@rollup/plugin-typescript'
 import json from '@rollup/plugin-json'
+import autoExternal from 'rollup-plugin-auto-external'
 
 export default {
   input: 'src/cli.ts',
@@ -7,5 +8,5 @@ export default {
     dir: 'dist',
     format: 'es',
   },
-  plugins: [typescript(), json()],
+  plugins: [autoExternal(), typescript(), json()],
 }
