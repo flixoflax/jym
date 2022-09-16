@@ -18,6 +18,10 @@ export const promptForPlans = async (
           type: 'input',
           name: 'name',
           message: "What's the name of your plan?",
+          validate(input, answers?) {
+            const valid = input.trim().length > 0
+            return valid || 'Please enter a name for your plan'
+          },
         },
       ])
 
