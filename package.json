@@ -9,6 +9,7 @@
     "jym": "bin/jym.js"
   },
   "scripts": {
+    "prepare": "rollup -c rollup.config.js",
     "build": "rollup -c rollup.config.js",
     "dev": "rollup -c rollup.config.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
