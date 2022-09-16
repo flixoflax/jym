@@ -5,6 +5,7 @@ import { Command } from 'commander'
 import packageJson from '../package.json'
 import chalk from 'chalk'
 import path from 'path'
+import { validateNpmName } from './utils/validate-pkg'
 
 const orange = chalk.hex('#FFA500')
 
@@ -19,16 +20,18 @@ export async function cli(args: Args): Promise<void> {
       projectPath = name
     })
     .allowUnknownOption()
-    .exitOverride((_err) => {
-      console.log(
-        '\nPlease specify the project directory:\n' +
-          `  ${orange(packageJson.name)} ${chalk.gray(
-            '<project-directory>'
-          )}\n` +
-          'For example:\n' +
-          `  ${orange(packageJson.name)} ${chalk.gray('my-jym-saas')}\n\n` +
-          `Run ${orange(`${packageJson.name} --help`)} to see all options.`
-      )
+    .exitOverride((err) => {
+      if (err) {
+        console.log(
+          '\nPlease specify the project directory:\n' +
+            `  ${orange(packageJson.name)} ${chalk.gray(
+              '<project-directory>'
+            )}\n` +
+            'For example:\n' +
+            `  ${orange(packageJson.name)} ${chalk.gray('my-jym-saas')}\n\n` +
+            `Run ${orange(`${packageJson.name} --help`)} to see all options.`
+        )
+      }
       process.exit(1)
     })
     .parse(args)
@@ -36,6 +39,18 @@ export async function cli(args: Args): Promise<void> {
   projectPath = projectPath.trim()
   const resolvedProjectPath = path.resolve(projectPath)
   const projectName = path.basename(resolvedProjectPath)
+
+  const { valid, problems } = validateNpmName(projectName)
+  if (!valid) {
+    console.error(
+      `Could not create a project called ${chalk.red(
+        `"${projectName}"`
+      )} because of npm naming restrictions:`
+    )
+
+    problems?.forEach((p) => console.error(`    ${chalk.red.bold('*')} ${p}`))
+    process.exit(1)
+  }
 
   console.log(`
   ${orange('\\   /\\')}
