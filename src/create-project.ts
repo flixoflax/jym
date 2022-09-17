@@ -7,6 +7,7 @@ import { makeDir } from './utils/make-dir'
 
 import fs from 'fs'
 import os from 'os'
+import { tryGitInit } from './utils/git'
 
 export const createProject = async (
   resolvedProjectPath: string,
@@ -57,5 +58,22 @@ export const createProject = async (
   fs.writeFileSync(
     packageJsonPath,
     JSON.stringify(packageJson, null, 2) + os.EOL
+  )
+
+  /**
+   * Initialize a git repository
+   */
+  if (tryGitInit(root)) {
+    console.log('Initialized a git repository.')
+    console.log()
+  }
+
+  /**
+   * Print out a success message
+   */
+  console.log(
+    `${chalk.green('Success!')} Created ${
+      options.name
+    } at ${resolvedProjectPath}`
   )
 }
