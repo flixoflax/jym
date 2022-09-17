@@ -6,7 +6,7 @@ import packageJson from '../package.json'
 import chalk from 'chalk'
 import path from 'path'
 import { validateNpmName } from './utils/validate-pkg'
-import { createProject } from './utils/create-project'
+import { createProject } from './create-project'
 
 const orange = chalk.hex('#FFA500') // custom color orange
 
@@ -69,7 +69,5 @@ export async function cli(args: Args): Promise<void> {
   `)
 
   const options: Options = await promptForOptions(projectName)
-  await createProject(projectName, options) // Create project
-
-  console.log(options) // Log options
+  await createProject(resolvedProjectPath, options) // Create project
 }
