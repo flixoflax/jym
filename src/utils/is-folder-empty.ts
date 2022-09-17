@@ -34,7 +34,7 @@ export const isFolderEmpty = (root: string, name: string): boolean => {
 
   if (conflicts.length > 0) {
     console.log(
-      `The directory '${chalk.green(name)} contains files that could conflict:`
+      `The directory ${chalk.green(name)} contains files that could conflict:`
     )
     console.log()
 
