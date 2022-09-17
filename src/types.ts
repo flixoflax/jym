@@ -22,6 +22,7 @@ export interface PricingPlan {
 
 // Options defines options for createProject
 export interface Options {
+  name: string
   description: string
   components: ComponentType[]
   currency: Currency
