@@ -9,8 +9,10 @@ export enum ComponentType {
 export enum Currency {
   EUR = 'EUR',
   USD = 'USD',
+  GBP = 'GBP',
 }
 
+// PricingPlan defines a pricing plan
 export interface PricingPlan {
   name: string
   priceMonth: number
@@ -18,6 +20,7 @@ export interface PricingPlan {
   features: string[]
 }
 
+// Options defines options for createProject
 export interface Options {
   description: string
   components: ComponentType[]

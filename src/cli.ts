@@ -6,8 +6,9 @@ import packageJson from '../package.json'
 import chalk from 'chalk'
 import path from 'path'
 import { validateNpmName } from './utils/validate-pkg'
+import { createProject } from './utils/create-project'
 
-const orange = chalk.hex('#FFA500')
+const orange = chalk.hex('#FFA500') // custom color orange
 
 export async function cli(args: Args): Promise<void> {
   let projectPath = ''
@@ -40,6 +41,9 @@ export async function cli(args: Args): Promise<void> {
   const resolvedProjectPath = path.resolve(projectPath)
   const projectName = path.basename(resolvedProjectPath)
 
+  /**
+   * Check if the projectName is valid
+   */
   const { valid, problems } = validateNpmName(projectName)
   if (!valid) {
     console.error(
@@ -52,6 +56,9 @@ export async function cli(args: Args): Promise<void> {
     process.exit(1)
   }
 
+  /**
+   * Display CLI header
+   */
   console.log(`
   ${orange('\\   /\\')}
   ${orange(")  ( ')")}     ${chalk.gray('Start a SaaS with')} ${chalk.bold(
@@ -62,5 +69,7 @@ export async function cli(args: Args): Promise<void> {
   `)
 
   const options: Options = await promptForOptions(projectName)
-  console.log(options)
+  await createProject(projectName, options) // Create project
+
+  console.log(options) // Log options
 }
