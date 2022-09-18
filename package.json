@@ -1,11 +1,10 @@
 {
-  "name": "jym",
-  "version": "1.0.0",
+  "name": "@flixoflax/jym",
+  "version": "0.0.1",
   "description": "Jym is a CLI tool to quickly generate SaaS MVPs",
   "main": "dist/cli.js",
   "type": "module",
   "bin": {
-    "@flixoflax/jym": "bin/jym.js",
     "jym": "bin/jym.js"
   },
   "scripts": {
