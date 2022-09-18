@@ -13,7 +13,7 @@ const orange = chalk.hex('#FFA500') // custom color orange
 export async function cli(args: Args): Promise<void> {
   let projectPath = ''
 
-  new Command(packageJson.name)
+  new Command('jym')
     .version(packageJson.version)
     .arguments('<project-directory>')
     .usage(`${chalk.green('<project-directory>')} [options]`)
@@ -25,12 +25,10 @@ export async function cli(args: Args): Promise<void> {
       if (err) {
         console.log(
           '\nPlease specify the project directory:\n' +
-            `  ${orange(packageJson.name)} ${chalk.gray(
-              '<project-directory>'
-            )}\n` +
+            `  ${orange('jym')} ${chalk.gray('<project-directory>')}\n` +
             'For example:\n' +
-            `  ${orange(packageJson.name)} ${chalk.gray('my-jym-saas')}\n\n` +
-            `Run ${orange(`${packageJson.name} --help`)} to see all options.`
+            `  ${orange('jym')} ${chalk.gray('my-jym-saas')}\n\n` +
+            `Run ${orange(`${'jym'} --help`)} to see all options.`
         )
       }
       process.exit(1)
@@ -62,7 +60,7 @@ export async function cli(args: Args): Promise<void> {
   console.log(`
   ${orange('\\   /\\')}
   ${orange(")  ( ')")}     ${chalk.gray('Start a SaaS with')} ${chalk.bold(
-    orange(packageJson.name)
+    orange('jym')
   )} 😺
  ${orange('(  /  )')}      ${chalk.greenBright('v' + packageJson.version)} 
   ${orange('\\(__)|')}
