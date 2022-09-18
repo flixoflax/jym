@@ -16,6 +16,11 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm publish
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
