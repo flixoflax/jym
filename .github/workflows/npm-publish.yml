@@ -16,7 +16,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: yarn install # will run `yarn install` command
-      - run: yarn publish --force
+      - run: yarn publish --force --access public # This will publish the release to npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
